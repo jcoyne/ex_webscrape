@@ -1,13 +1,12 @@
 defmodule WebScrape do
 
-  def main(argv) do
-    pages = range = 1..142
-    result = Enum.reduce(pages, 0, fn(x, acc) -> sum_of_page(x) + acc end)
+  def main(_argv) do
+    pages = 1..142
+    result = Enum.reduce(pages, 0, fn(x, acc) -> count_pictures_on_page(x) + acc end)
     IO.puts "Result is: #{result}"
-    IO.puts inspect result
   end
 
-  defp sum_of_page(n) do
+  defp count_pictures_on_page(n) do
     {:ok, result} = download_page(n)
     {:ok, picture_count} = count_pictures(result)
     picture_count 
